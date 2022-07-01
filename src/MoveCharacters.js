@@ -1,7 +1,7 @@
 import { gameMovement } from "./RabbitMove"
 
-const MoveCharacters = (direction,gameArray)=> {
-    return gameMovement(direction,gameArray)
+const MoveCharacters = (direction,gameState)=> {
+    return gameMovement(direction,gameState)
  
 }
 export {MoveCharacters}

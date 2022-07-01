@@ -2,24 +2,24 @@ import React from "react"
 import { useState } from "react"
 import { MemberRandomPossitonInMatrix } from "./CreateMatrix"
 import { DrowGameZone } from "./DrowGameZone"
-// import { gameMovement } from "./RabbitMove"
+import { gameMovement } from "./RabbitMove"
 import { Button } from "./Arrows"
-import { MoveCharacters } from "./MoveCharacters"
 
 const StartSelect = () => {
   const [value, setValue] = useState(5)
 
   const [gameArray, setGameArray] = useState({
     matrix: [],
-    isGameover: true,
+    isGameover: false,
     gameStatus: "",
   })
 
-  const gameState = {...gameArray}
+
+
   const handleMove = (direction) => {
-    setGameArray(gameState,MoveCharacters(direction, gameArray.matrix))
-    
-   
+    const gameState = {...gameArray}
+    const newObject = gameMovement(direction,gameState) 
+    setGameArray( newObject )
   }
 
   function selectChange(event) {
@@ -33,9 +33,7 @@ const StartSelect = () => {
     })
   }
 
-  const divStyle = {
-    width: value * 60 + 20 + "px",
-  }
+ 
   
   return (
     <div className="wrapper">
@@ -51,17 +49,13 @@ const StartSelect = () => {
         </select>
         {<DrowGameZone matrix={gameArray.matrix} />}
       </div>
-      <div className={"game_zone"} style={divStyle}>
-   
-        
-        
-      </div>
-
-      <Button
+      {/* <div className={"game_zone"} style={divStyle}></div> */}
+<div>
+      <Button 
         onClick={() => {
           handleMove("up")
         }}/>
-      <Button
+      <Button 
         onClick={() => {
           handleMove("left")
         }}/>
@@ -72,7 +66,7 @@ const StartSelect = () => {
       <Button
         onClick={() => {
           handleMove("down")
-        }}/>
+        }}/></div>
     </div>
   )
 }
