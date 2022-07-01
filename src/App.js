@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import {StartSelect} from "./StartSelect"
 
-function App() {
+
+const  App=() => {
+  const [value, setValue] = useState([])
+
+  function handleClick() {
+    setValue([...value, value + 1])
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="newBoard">
+      <button id="createNewBoard" onClick={handleClick}>
+        New Board
+      </button>
+      {value.map((item) => (
+        <StartSelect />
+      ))}
     </div>
-  );
+  )
 }
 
-export default App;
+export  {App}
