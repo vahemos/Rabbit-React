@@ -1,8 +1,7 @@
 import { useState } from "react"
-import {StartSelect} from "./StartSelect"
+import { Start } from "./Start"
 
-
-const  App=() => {
+const App = () => {
   const [value, setValue] = useState([])
 
   function handleClick() {
@@ -14,10 +13,10 @@ const  App=() => {
         New Board
       </button>
       {value.map((item) => (
-        <StartSelect />
+        <Start key={item} />
       ))}
     </div>
   )
 }
 
-export  {App}
+export { App }

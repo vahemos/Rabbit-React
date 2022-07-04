@@ -1,5 +1,5 @@
 body {
-  /* background-image: url(".public/img/background.jpg"); */
+  background-image: url("../public/img/background.jpg");
   background-repeat: no-repeat;
 
   background-size: cover;
@@ -14,8 +14,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* flex-direction: column; */
 }
+
 button,
 select {
   text-align: center;
@@ -39,7 +39,6 @@ button:active {
   background-color: rgb(192, 96, 247);
   padding: 10px;
   border-radius: 20px;
- 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -68,13 +67,19 @@ img {
   width: 300px;
   height: 300px;
 }
-.up {
+#up {
   text-align: center;
 }
-.down {
+#down {
   text-align: center;
   margin-bottom: 80px;
 }
-.leftRight {
+#leftRight {
+  display: flex;
   text-align: center;
 }
+.message{
+  text-align: center;
+  font-size: 50px;
+color: #3813db;
+  }

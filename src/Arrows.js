@@ -1,12 +1,9 @@
-
-const Button = (props) => {
+const Arrow = (props) => {
   return (
-    <div >
-      <button className="up" onClick={props.onClick}>
-      &#x2191;
-      </button>
+    <div>
+      <button onClick={props.onClick}>&#x262D;</button>
     </div>
   )
 }
 
-export {Button}
+export { Arrow }
