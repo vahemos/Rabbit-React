@@ -7,9 +7,6 @@ const wolf = GAME_CONST_PROPERTIES.wolf.name
 const gameMovments = (direction, gameState) => {
   const newGameState = { ...gameState }
   const moveRabbit = rabbitMove(direction, newGameState)
-  if (moveRabbit.isGameOver === true) {
-    return
-  }
   return wolvesMove(moveRabbit, wolf)
 }
 

@@ -29,6 +29,7 @@ const setGameStatus = (gameState, x, y) => {
   } else if (matrix[x][y] === GAME_CONST_PROPERTIES.wolf.name) {
     gameState.isGameOver = true
     gameState.gameStatus = "you lose"
+    // console.log(gameState.gameStatus,"lose")///////////////////
    }
 //    else if (matrix[x][y] === GAME_CONST_PROPERTIES.ban.name) {
  
@@ -36,6 +37,7 @@ const setGameStatus = (gameState, x, y) => {
   else if (matrix[x][y] === GAME_CONST_PROPERTIES.house.name) {
     gameState.isGameOver = true
     gameState.gameStatus = "you win" ////
+    // console.log(gameState.gameStatus,"win")
     matrix[x][y] = GAME_CONST_PROPERTIES.rabbit.name
     matrix[i][j] = freebox
   }
