@@ -2,9 +2,10 @@ import React from "react"
 import { useState } from "react"
 import { MemberRandomPossitonInMatrix } from "./CreateMatrix"
 import { DrowGameZone } from "./DrowGameZone"
-import { Arrow } from "./Arrows"
 import { gameMovments } from "./gameMovments"
 import { ShowMessage } from "./ShowMessage"
+
+const directionButtons = ["up", "left", "right", "down"]
 
 const Start = () => {
   const [value, setValue] = useState(5)
@@ -34,7 +35,7 @@ const Start = () => {
       gameStatus: "",
     })
   }
-
+  
   return (
     <div className="wrapper">
       <div className="newDiv">
@@ -47,34 +48,20 @@ const Start = () => {
           <option value="10">10 x 10</option>
         </select>
 
-        {gameState.isGameOver === true ? 
-        (<ShowMessage gameStatus={gameState.gameStatus} />) : (<DrowGameZone matrix={gameState.matrix} />)}
+        {gameState.isGameOver === true ? (
+          <ShowMessage gameStatus={gameState.gameStatus} />
+        ) : (
+          <DrowGameZone matrix={gameState.matrix} />
+        )}
       </div>
-      <div id="up">
-        <Arrow
-          onClick={() => {
-            handleMove("up")
-          }}
-        />
-      </div>
-      <div id="leftRight">
-        <Arrow
-          onClick={() => {
-            handleMove("left")
-          }}
-        />
-        <Arrow
-          onClick={() => {
-            handleMove("right")
-          }}
-        />
-      </div>
-      <div id="down">
-        <Arrow
-          onClick={() => {
-            handleMove("down")
-          }}
-        />
+      <div>
+        {directionButtons.map((direction) => {
+          return (
+            <div id={direction}>
+              <button onClick={() => handleMove(direction)}>{direction.toUpperCase()}</button>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

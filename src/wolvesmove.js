@@ -4,16 +4,14 @@ const freebox = "0"
 const rabbit = GAME_CONST_PROPERTIES.rabbit.name
 const wolf = GAME_CONST_PROPERTIES.wolf.name
 
-
 const atacRabbit = (gameState, emptyCellsArr) => {
   const matrix = gameState.matrix
   const massiv = []
   emptyCellsArr.forEach((cell) => {
     const [x, y] = cell
-    if(matrix[x][y] === rabbit) {
+    if (matrix[x][y] === rabbit) {
       gameState.isGameOver = true
       gameState.gameStatus = "you lose"
-      
     }
     if (matrix[x][y] === freebox) {
       massiv.push([x, y])
@@ -32,7 +30,6 @@ const getCordinat = (matrix, [x, y]) => {
   return cells.filter((cell) => isInRange(matrix, cell))
 }
 
-
 const isInRange = (matrix, [x, y]) => {
   return x >= 0 && x < matrix.length && y >= 0 && y < matrix.length
 }
@@ -47,30 +44,29 @@ const getClosestCell = (freeBoxes, matrix) => {
   return distaceArray
 }
 
-const  distance = (wolf, rabbit) => {
+const distance = (wolf, rabbit) => {
   const [x, y] = wolf
   const [z, k] = rabbit
   return Math.round(Math.sqrt(Math.pow(x - z, 2) + Math.pow(y - k, 2)))
 }
 
-
-const getMinDistance = (distaceArray, freeBoxes) =>{
+const getMinDistance = (distaceArray, freeBoxes) => {
   const min = Math.min(...distaceArray)
   const index = distaceArray.indexOf(min)
   return freeBoxes[index]
 }
 
-const moveSingleWolfToNewPosition = ([x, y], [z, k], gameState) =>{
+const moveSingleWolfToNewPosition = ([x, y], [z, k], gameState) => {
   const matrix = gameState.matrix
   if (matrix[x][y] === rabbit) {
     gameState.isGameOver = true
-    gameState.gameStatus="you lose"
+    gameState.gameStatus = "you lose"
   }
   matrix[x][y] = wolf
   matrix[z][k] = freebox
 }
 
-const  getMemberPosition = (matrix, gameMember) => {
+const getMemberPosition = (matrix, gameMember) => {
   const findeposs = function (accum, row, x) {
     row.forEach((item, y) => {
       if (item === gameMember) {
@@ -83,7 +79,7 @@ const  getMemberPosition = (matrix, gameMember) => {
 }
 
 const wolvesMove = (gameState, member) => {
-  const newGameState = {...gameState}
+  const newGameState = { ...gameState }
   const matrix = newGameState.matrix
   const wolvesCorrentPossition = getMemberPosition(matrix, member)
   wolvesCorrentPossition.forEach((wolf) => {
@@ -100,4 +96,4 @@ const wolvesMove = (gameState, member) => {
   return newGameState
 }
 
-export {wolvesMove}
+export { wolvesMove }

@@ -6,16 +6,12 @@ const house = GAME_CONST_PROPERTIES.house.name
 const wolf = GAME_CONST_PROPERTIES.wolf.name
 const ban = GAME_CONST_PROPERTIES.ban.name
 
-
-
 function CreateMatrix(value) {
   let matrix = new Array(parseInt(value))
     .fill(freebox)
     .map(() => new Array(parseInt(value)).fill(freebox))
   return matrix
 }
-
-
 
 function freeCoordinates(matrix) {
   const x = Math.floor(Math.random() * matrix.length)
