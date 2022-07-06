@@ -1,17 +1,21 @@
 import React from "react"
 import { useState } from "react"
-import { MemberRandomPossitonInMatrix } from "./CreateMatrix"
-import { DrawGameZone } from "./DrawGameZone"
-import { gameMovments } from "./gameMovments"
-import { ShowMessage } from "./ShowMessage"
+import { MemberRandomPossitonInMatrix } from "../CreateMatrix"
+import { DrawGameZone } from "../DrawGameZone/DrawGameZone"
+import { gameMovments } from "../gameMovments"
+import { ShowMessage } from "../ShowMessage/ShowMessage"
+import { Wrapper,Btn,DirectionBtn,Select} from "./StartStyle"
 
 
 
+
+
+////////////////////////
 
 const directionButtons = ["up", "left", "right", "down"]
 
 const Start = () => {
-  const [value, setValue] = useState(5)
+  const [boardSize, setBoardSize] = useState(5)
 
   const [gameState, setgameState] = useState({
     matrix: [],
@@ -29,27 +33,27 @@ const Start = () => {
   }
 
   function selectChange(event) {
-    setValue(event.target.value)
+    setBoardSize(event.target.value)
   }
   const handleClick = () => {
     setgameState({
-      matrix: MemberRandomPossitonInMatrix(parseInt(value)),
+      matrix: MemberRandomPossitonInMatrix(parseInt(boardSize)),
       isGameOver: false,
       gameStatus: "",
     })
   }
 
   return (
-    <div className="wrapper">
-      <div className="newDiv">
-        <button className="startbutton" onClick={handleClick}>
+    <Wrapper >
+      <div>
+        <Btn className="startbutton" onClick={handleClick}>
           Start
-        </button>
-        <select name="" id="select" className="select" onChange={selectChange}>
+        </Btn>
+        <Select name="" id="select" className="select" onChange={selectChange}>
           <option value="5">5 x 5</option>
           <option value="7">7 x 7</option>
           <option value="10">10 x 10</option>
-        </select>
+        </Select>
 
         {gameState.isGameOver === true ? (
           <ShowMessage gameStatus={gameState.gameStatus} />
@@ -61,12 +65,14 @@ const Start = () => {
         {directionButtons.map((direction,i) => {
           return (
             <div className={direction} key={i}>
-              <button onClick={() => handleMove(direction)}>{direction.toUpperCase()}</button>
+              <DirectionBtn direction = {direction} onClick={() => handleMove(direction)}>{direction.toUpperCase()}</DirectionBtn>
             </div>
           )
         })}
       </div>
-    </div>
+      
+    </Wrapper>
+    
   )
 }
 

@@ -1,5 +1,10 @@
 import { useState } from "react"
-import { Start } from "./Start"
+import { Start } from "../Start/Start"
+import { Btn } from "./AppStyle"
+import { GlobalStyle } from "../Start/StartStyle"
+
+
+
 
 const App = () => {
   const [boardNumber, setBoardNumber] = useState([])
@@ -7,16 +12,21 @@ const App = () => {
   function createNewBoard() {
     setBoardNumber([...boardNumber, boardNumber + 1])
   }
+   
   return (
-    <div className="newBoard">
-      <button id="createNewBoard" onClick={createNewBoard}>
+    
+    <div>
+      <GlobalStyle />
+      <Btn id="createNewBoard" onClick={createNewBoard}>
         New Board
-      </button>
+      </Btn>
       {boardNumber.map((item) => (
         <Start key={item} />
       ))}
     </div>
+    
   )
+
 }
 
 export { App }

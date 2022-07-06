@@ -1,4 +1,6 @@
-import { GAME_CONST_PROPERTIES } from "./constants"
+import { GAME_CONST_PROPERTIES } from "../constants"
+import { Img } from "./DrawImgStyle"
+
 
 const Draw = (props) => {
   const column = props.column
@@ -15,7 +17,7 @@ const Draw = (props) => {
     src=GAME_CONST_PROPERTIES.house.src
   
 }
-return <img src={src} alt="" />
+return <Img src={src} alt="" />
 }
 
 export { Draw }
