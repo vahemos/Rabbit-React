@@ -1,9 +1,12 @@
 import React from "react"
 import { useState } from "react"
 import { MemberRandomPossitonInMatrix } from "./CreateMatrix"
-import { DrowGameZone } from "./DrowGameZone"
+import { DrawGameZone } from "./DrawGameZone"
 import { gameMovments } from "./gameMovments"
 import { ShowMessage } from "./ShowMessage"
+
+
+
 
 const directionButtons = ["up", "left", "right", "down"]
 
@@ -35,7 +38,7 @@ const Start = () => {
       gameStatus: "",
     })
   }
-  
+
   return (
     <div className="wrapper">
       <div className="newDiv">
@@ -51,13 +54,13 @@ const Start = () => {
         {gameState.isGameOver === true ? (
           <ShowMessage gameStatus={gameState.gameStatus} />
         ) : (
-          <DrowGameZone matrix={gameState.matrix} />
+          <DrawGameZone matrix={gameState.matrix} />
         )}
       </div>
       <div>
-        {directionButtons.map((direction) => {
+        {directionButtons.map((direction,i) => {
           return (
-            <div id={direction}>
+            <div className={direction} key={i}>
               <button onClick={() => handleMove(direction)}>{direction.toUpperCase()}</button>
             </div>
           )

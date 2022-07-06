@@ -67,26 +67,27 @@ img {
   width: 300px;
   height: 300px;
 }
-#up {
+.up {
   text-align: center;
 }
-#down {
+.down {
   text-align: center;
   margin-bottom: 80px;
   position: relative;
   bottom: 50px;
 }
-#left{
+.left {
   position: relative;
   right: 100px;
 }
-#right{
+.right {
   position: relative;
   left: 100px;
   bottom: 50px;
 }
-.message{
+.message {
   text-align: center;
   font-size: 50px;
-color: #3813db;
-  }
+  color: #d41818;
+
+}

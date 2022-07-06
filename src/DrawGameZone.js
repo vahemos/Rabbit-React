@@ -1,7 +1,7 @@
 import React from "react"
 import { Draw } from "./DrawImg"
 
-const DrowGameZone = (props) => {
+const DrawGameZone = (props) => {
   const matrix = props.matrix
   const divStyle = {
     width: matrix.length * 60 + 20 + "px",
@@ -11,7 +11,7 @@ const DrowGameZone = (props) => {
       {matrix.map((row, k) =>
         row.map((column, i) => {
           return (
-            <div className="box" key={k.toString() + i.toString()}>
+            <div className="box" key={`${k}${i}`}>
               <Draw column={column} />
             </div>
           )
@@ -20,4 +20,4 @@ const DrowGameZone = (props) => {
     </div>
   )
 }
-export { DrowGameZone }
+export { DrawGameZone }

@@ -17,29 +17,30 @@ function getMemberPosition(gameState, gameMember) {
   return matrix.reduce(findeposs, [])
 }
 
-const setGameStatus = (gameState, x, y) => {
+const setGameStatusIfNeeded = (gameState, x, y) => {
   const matrix = gameState.matrix
-  const [i, j] = getMemberPosition(
+
+  if (matrix[x][y] === GAME_CONST_PROPERTIES.wolf.name) {
+    gameState.isGameOver = true
+    gameState.gameStatus = "you lose"
+    return
+  }
+  if (matrix[x][y] === GAME_CONST_PROPERTIES.house.name) {
+    gameState.isGameOver = true
+    gameState.gameStatus = "you win"
+    return
+  }
+}
+
+const moveRabbit = (gameState, x, y) => {
+  const matrix = gameState.matrix
+  const [rabbitX, rabbitY] = getMemberPosition(
     gameState,
     GAME_CONST_PROPERTIES.rabbit.name
   )[0]
-  if (matrix[x][y] === freebox) {
+  if (matrix[x][y] !== GAME_CONST_PROPERTIES.ban.name) {
     matrix[x][y] = GAME_CONST_PROPERTIES.rabbit.name
-    matrix[i][j] = freebox
-  } else if (matrix[x][y] === GAME_CONST_PROPERTIES.wolf.name) {
-    gameState.isGameOver = true
-    gameState.gameStatus = "you lose"
-    // console.log(gameState.gameStatus,"lose")///////////////////
-  }
-  //    else if (matrix[x][y] === GAME_CONST_PROPERTIES.ban.name) {
-
-  //  }
-  else if (matrix[x][y] === GAME_CONST_PROPERTIES.house.name) {
-    gameState.isGameOver = true
-    gameState.gameStatus = "you win" ////
-    // console.log(gameState.gameStatus,"win")
-    matrix[x][y] = GAME_CONST_PROPERTIES.rabbit.name
-    matrix[i][j] = freebox
+    matrix[rabbitX][rabbitY] = freebox
   }
   return gameState
 }
@@ -53,15 +54,32 @@ const rabbitMove = (direction, gameState) => {
   const [x, y] = cordinateOfCharacter[0]
   let newX = x
   let newY = y
-  direction === "left" &&
-    (y === 0 ? (newY = matrix.length - 1) : (newY = y - 1))
-  direction === "right" &&
-    (y === matrix.length - 1 ? (newY = 0) : (newY = y + 1))
-  direction === "up" && (x === 0 ? (newX = matrix.length - 1) : (newX = x - 1))
-  direction === "down" &&
-    (x === matrix.length - 1 ? (newX = 0) : (newX = x + 1))
-  const movementRabbit = setGameStatus(gameState, newX, newY)
-  return movementRabbit
+
+  if (direction === "left") {
+    newY = y - 1
+    if (y === 0) {
+      newY = matrix.length - 1
+    }
+  } else if (direction === "right") {
+    newY = y + 1
+    if (y === matrix.length - 1) {
+      newY = 0
+    }
+  } else if (direction === "up") {
+    newX = x - 1
+    if (x === 0) {
+      newX = matrix.length - 1
+    }
+  } else if (direction === "down") {
+    newX = x + 1
+    if (x === matrix.length - 1) {
+      newX = 0
+    }
+  }
+
+  setGameStatusIfNeeded(gameState, newX, newY)
+
+  return moveRabbit(gameState, newX, newY)
 }
 
 export { rabbitMove }

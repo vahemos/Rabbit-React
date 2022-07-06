@@ -2,17 +2,17 @@ import { useState } from "react"
 import { Start } from "./Start"
 
 const App = () => {
-  const [value, setValue] = useState([])
+  const [boardNumber, setBoardNumber] = useState([])
 
-  function handleClick() {
-    setValue([...value, value + 1])
+  function createNewBoard() {
+    setBoardNumber([...boardNumber, boardNumber + 1])
   }
   return (
     <div className="newBoard">
-      <button id="createNewBoard" onClick={handleClick}>
+      <button id="createNewBoard" onClick={createNewBoard}>
         New Board
       </button>
-      {value.map((item) => (
+      {boardNumber.map((item) => (
         <Start key={item} />
       ))}
     </div>

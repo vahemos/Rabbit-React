@@ -2,16 +2,20 @@ import { GAME_CONST_PROPERTIES } from "./constants"
 
 const Draw = (props) => {
   const column = props.column
-
-  if (column === GAME_CONST_PROPERTIES.rabbit.name) {
-    return <img src={GAME_CONST_PROPERTIES.rabbit.src} alt="" />
+  let src=""
+  if(column === "0"){
+    return
+  }else if (column === GAME_CONST_PROPERTIES.rabbit.name) {
+    src = GAME_CONST_PROPERTIES.rabbit.src
   } else if (column === GAME_CONST_PROPERTIES.wolf.name) {
-    return <img src={GAME_CONST_PROPERTIES.wolf.src} alt="" />
+     src=GAME_CONST_PROPERTIES.wolf.src
   } else if (column === GAME_CONST_PROPERTIES.ban.name) {
-    return <img src={GAME_CONST_PROPERTIES.ban.src} alt="" />
+    src=GAME_CONST_PROPERTIES.ban.src
   } else if (column === GAME_CONST_PROPERTIES.house.name) {
-    return <img src={GAME_CONST_PROPERTIES.house.src} alt="" />
-  }
+    src=GAME_CONST_PROPERTIES.house.src
+  
+}
+return <img src={src} alt="" />
 }
 
 export { Draw }
