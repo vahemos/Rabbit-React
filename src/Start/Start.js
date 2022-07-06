@@ -4,15 +4,12 @@ import { MemberRandomPossitonInMatrix } from "../CreateMatrix"
 import { DrawGameZone } from "../DrawGameZone/DrawGameZone"
 import { gameMovments } from "../gameMovments"
 import { ShowMessage } from "../ShowMessage/ShowMessage"
-import { Wrapper,Btn,DirectionBtn,Select} from "./StartStyle"
-
-
-
-
+import { Wrapper, Btn, DirectionBtn, Select } from "./StartStyle"
 
 ////////////////////////
 
 const directionButtons = ["up", "left", "right", "down"]
+const selectValues = [5, 7, 10]
 
 const Start = () => {
   const [boardSize, setBoardSize] = useState(5)
@@ -44,15 +41,17 @@ const Start = () => {
   }
 
   return (
-    <Wrapper >
+    <Wrapper>
       <div>
         <Btn className="startbutton" onClick={handleClick}>
           Start
         </Btn>
         <Select name="" id="select" className="select" onChange={selectChange}>
-          <option value="5">5 x 5</option>
-          <option value="7">7 x 7</option>
-          <option value="10">10 x 10</option>
+          {selectValues.map((optionVal) => (
+            <option key={optionVal} value={optionVal}>
+              {optionVal} x {optionVal}
+            </option>
+          ))}
         </Select>
 
         {gameState.isGameOver === true ? (
@@ -62,17 +61,20 @@ const Start = () => {
         )}
       </div>
       <div>
-        {directionButtons.map((direction,i) => {
+        {directionButtons.map((direction, i) => {
           return (
             <div className={direction} key={i}>
-              <DirectionBtn direction = {direction} onClick={() => handleMove(direction)}>{direction.toUpperCase()}</DirectionBtn>
+              <DirectionBtn
+                direction={direction}
+                onClick={() => handleMove(direction)}
+              >
+                {direction.toUpperCase()}
+              </DirectionBtn>
             </div>
           )
         })}
       </div>
-      
     </Wrapper>
-    
   )
 }
 
